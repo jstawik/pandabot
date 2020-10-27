@@ -1,0 +1,8 @@
+[Unit] 
+Description=Panda Bot
+
+[Service]
+ExecStart=python3 /home/kstawik/pandabot/main.py
+
+[Install] 
+WantedBy=multi-user.target
