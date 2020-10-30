@@ -106,8 +106,6 @@ def channel_exists(name):
 
 
 guild = discord.Guild
-channel_category = discord.CategoryChannel
-role = discord.Role
 logger = logging.getLogger('discord')
 
 init_logging()
