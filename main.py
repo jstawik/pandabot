@@ -66,6 +66,7 @@ async def roll(ctx, dice: str):
 async def create_text_channel(user, name, category):
     tmp_channel = await guild.create_text_channel(name=name, category=category)
     await tmp_channel.set_permissions(user, read_messages=True, send_messages=True)
+
     logger.info(f"Channel {tmp_channel.name}"
           f" created in {tmp_channel.category}"
           f" with ID {tmp_channel.id}"
@@ -110,5 +111,6 @@ role = discord.Role
 logger = logging.getLogger('discord')
 
 init_logging()
+
 bot.loop.create_task(app.run_task('0.0.0.0', 5000))
 bot.run(config["key"])

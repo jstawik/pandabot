@@ -3,6 +3,8 @@ Description=Panda Bot
 
 [Service]
 ExecStart=python3 /home/kstawik/pandabot/main.py
+StandardOutput=append:/var/log/pandabot.log
+StandardError=append:/var/log/pandabot.log
 
 [Install] 
 WantedBy=multi-user.target
