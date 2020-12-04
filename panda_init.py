@@ -40,4 +40,4 @@ def init_logging(config, name):
     logger.debug("Logger created")
     return logger
 
-logger = init_logging(config, __name__) 
+logger = init_logging(config, __name__)

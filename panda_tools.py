@@ -19,6 +19,3 @@ def channel_exists(name, guild):
         if channel.name == name:
             channel_exists = True 
     return channel_exists
-
-
-

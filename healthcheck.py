@@ -4,3 +4,4 @@ app = Quart(__name__)
 @app.route('/health')
 async def hello():
     return 'Alive'
+    

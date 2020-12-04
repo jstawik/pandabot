@@ -36,4 +36,3 @@ async def on_member_update(before, after):
                 if role_message[role.name]:
                     logger.info(f"Sending a welcome message to a new {role.name}")
                     await channel.send(role_message[role.name])
-
