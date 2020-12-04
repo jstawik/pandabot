@@ -2,7 +2,7 @@ import json
 import discord
 from discord.ext import commands
 import logging
-# import discord_logging
+# import discord_logging #### TODO - discord logs handling
 
 config_path = "/home/kstawik/.pandacfg"
 
@@ -33,7 +33,7 @@ def init_logging(config, name):
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
     
-    # logger.addHandler(discord_handler)
+    # logger.addHandler(discord_handler) #### TODO - discord logs handling
     logger.addHandler(stream_handler)
     logger.addHandler(file_handler)
 

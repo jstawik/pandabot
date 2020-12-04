@@ -13,12 +13,12 @@ async def create_text_channel(guild, user, name, category):
           f" on behalf of {user}")
     return tmp_channel
     
-# def channel_exists(name):
-#     channel_exists = False
-#     for channel in guild.channels:
-#         if channel.name == name:
-#             channel_exists = True 
-#     return channel_exists
+def channel_exists(name, guild):
+    channel_exists = False
+    for channel in guild.channels:
+        if channel.name == name:
+            channel_exists = True 
+    return channel_exists
 
 
 
