@@ -4,9 +4,9 @@ from discord.ext import commands
 import logging
 # import discord_logging #### TODO - discord logs handling
 
-config_path = "/home/kstawik/.pandacfg"
+config_path = "/home/kstawik/.pandacfg/config.json"
 
-with open( f"{config_path}/config.json", 'r') as file:
+with open( config_path, 'r') as file:
     config = json.loads(file.read())
 
 logger = logging.getLogger(__name__)

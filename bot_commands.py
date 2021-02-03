@@ -6,14 +6,28 @@ import random
 
 logger = init_logging(config, __name__) 
 
-@bot.command(name="private_channel")
-async def private_channel(ctx, user_id, channel_category):
+# @bot.command(name="private_channel")
+# async def private_channel(ctx, user_id, channel_category):
+#     """Nowy kanał dostępny jedynie dla roli Owner oraz wybranego użytkownika"""
+#     try:
+#         logger.debug(f"Looking for user id {user_id}")
+#         user = ctx.guild.get_member(int(user_id))
+#         logger.info(f"Found user with id {user_id}: {user}")
+#         await panda_tools.create_text_channel(ctx.guild, user, user.name, channel_category )
+#     except Exception as e:
+#         logger.warning (e)
+#         await ctx.send('Wystąpił błąd, prawdopodobnie nie znaleziono takiej osoby')
+#         await panda_tools.channel_message(ctx.guild, e, "pandabot-log")
+#         return
+
+@bot.command(name="priv")
+async def private_channel(ctx):
     """Nowy kanał dostępny jedynie dla roli Owner oraz wybranego użytkownika"""
     try:
-        logger.debug(f"Looking for user id {user_id}")
-        user = ctx.guild.get_member(int(user_id))
-        logger.info(f"Found user with id {user_id}: {user}")
-        await panda_tools.create_text_channel(ctx.guild, user, user.name, channel_category )
+        logger.debug(f"Looking for user id {ctx.author.id}")
+        user = ctx.guild.get_member(int(ctx.author.id))
+        logger.info(f"Found user with id {ctx.author.id}: {user}")
+        await panda_tools.create_text_channel(ctx.guild, user, f"{ctx.author.name}_priv", config["private_chat_category_name"] )
     except Exception as e:
         logger.warning (e)
         await ctx.send('Wystąpił błąd, prawdopodobnie nie znaleziono takiej osoby')
@@ -38,6 +52,6 @@ async def roll(ctx, dice: str):
 # async def question(ctx):
 #     """Nie używać"""
 #     try:
-#         await panda_roles.generate_questions(ctx.guild, "pandabot-log")
+#         await panda_roles.generate_questions(ctx.guild, "kandydat-devops-core_kasper3649")
 #     except Exception as e:
 #         await ctx.send(e)

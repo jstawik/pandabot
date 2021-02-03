@@ -6,5 +6,5 @@ import bot_events
 
 logger = init_logging(config, __name__) 
 
-bot.loop.create_task(healthcheck.app.run_task('0.0.0.0', 5000))
+bot.loop.create_task(healthcheck.app.run_task('0.0.0.0', config["port"]))
 bot.run(config["key"])

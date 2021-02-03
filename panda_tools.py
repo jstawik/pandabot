@@ -4,6 +4,8 @@ from panda_init import *
 logger = init_logging(config, __name__) 
 
 async def create_text_channel(guild, user, name, category):
+    logger.debug(f"Creating channel named {name} inside category {category}")
+    logger.debug(f"{guild.categories}")
     category = [cat for cat in guild.categories if cat.name == category][0]
     logger.debug(f"Creating channel named {name} inside category {category}")
     tmp_channel = await guild.create_text_channel(name=name, category=category)
