@@ -32,7 +32,7 @@ def init_logging(config, name):
     file_handler = logging.FileHandler(config["log_path"])
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
-    
+
     # logger.addHandler(discord_handler) #### TODO - discord logs handling
     logger.addHandler(stream_handler)
     logger.addHandler(file_handler)
