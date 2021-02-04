@@ -5,7 +5,7 @@ import logging
 # import discord_logging #### TODO - discord logs handling
 
 config_path = "/home/kstawik/.pandacfg"
-config_file = "test_config.json"
+config_file = "config.json"
 
 with open( f"{config_path}/{config_file}", 'r') as file:
     config = json.loads(file.read())
