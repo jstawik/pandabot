@@ -63,7 +63,6 @@ def prepare_questions():
 async def print_questions(guild, questions, channel):
     logger.debug(f"Printing questions: {questions}")
     for category in questions:
-        discord.File("/home/kstawik/pandabot/panda.png", filename="panda.png")
         embed=discord.Embed(title="Pytania:", color=0x70ae36)
         embed.set_author(name=f"Kategoria: {category}", icon_url=guild.icon_url)
         embed.set_footer(text="Prosimy o nie udostępnianie pytań innym osobom i przypominamy, że pytania mają na celu jedynie określić poziom kursanta. W Twoim najlepszym interesie jest odpowiadać samodzielnie!")
