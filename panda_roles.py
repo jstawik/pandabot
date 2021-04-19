@@ -17,12 +17,12 @@ async def on_role_update(before, after):
         
         if role in after.roles and role not in before.roles:
             await panda_tools.add_role(after, "Panda")
-            channel_name = f"{role.name}_{after}".lower().replace("#", "")
+            channel_name = after.name.lower().replace("#", "")
             logger.debug(f"Checking if channel {channel_name} exists")
             
-            if not panda_tools.channel_exists(channel_name, guild):
+            if not panda_tools.channel_exists(channel_name, guild, role.name):
                 logger.debug(f"Channel {channel_name} doesn't exist. Trying to create channel")
-                channel = await panda_tools.create_text_channel(guild=guild, user=after, name=channel_name, category=config["bot_category_name"])
+                channel = await panda_tools.create_text_channel(guild=guild, user=after, name=channel_name, category=role.name)
                 await welcome_user(guild, channel, role)
 
 

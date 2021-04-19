@@ -24,10 +24,11 @@ async def add_role(user, role_name):
     role = [role for role in guild.roles if role.name == role_name][0]
     await user.add_roles(role)
 
-def channel_exists(name, guild):
+def channel_exists(name, guild, category):
     channel_exists = False
+    logger.debug(f"Checking name {name} in category: {category}")
     for channel in guild.channels:
-        if channel.name == name:
+        if channel.name == name and str(channel.category) == str(category):
             channel_exists = True 
     return channel_exists
 
