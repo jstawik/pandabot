@@ -35,8 +35,8 @@ async def welcome_user(guild, channel, role):
         await channel.send(role_message[role.name])
     
     if role.name == "Kandydat-devops-core":
-        logger.info(f"Generating random question set for {channel} channel.")
-        await generate_questions(guild, channel.name)
+        logger.info(f"Generating random question set for Kandydat-devops-core channel.")
+        await generate_questions(guild, "Kandydat-devops-core")
 
 async def generate_questions(guild, channel):
         questions_path = f"{config_path}/questions/{channel}.json"
