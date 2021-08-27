@@ -36,9 +36,9 @@ async def welcome_user(guild, channel, role):
     
     if role.name == "Kandydat-devops-core":
         logger.info(f"Generating random question set for Kandydat-devops-core channel.")
-        await generate_questions(guild, "Kandydat-devops-core")
+        await generate_questions(guild, channel, "Kandydat-devops-core")
 
-async def generate_questions(guild, channel):
+async def generate_questions(guild, channel, category):
         questions_path = f"{config_path}/questions/{channel}.json"
         
         questions = load_questions(questions_path) 
@@ -47,7 +47,7 @@ async def generate_questions(guild, channel):
         logger.debug(f"Questions: {questions}")
 
         save_questions(questions, questions_path)
-        await print_questions(guild, questions, channel)
+        await print_questions(guild, questions, channel, category)
 
 def prepare_questions():
     logger.debug(f"Preparing random question set")
@@ -60,17 +60,17 @@ def prepare_questions():
 
     return generated_questions
 
-async def print_questions(guild, questions, channel):
+async def print_questions(guild, questions, channel, category):
     logger.debug(f"Printing questions: {questions}")
-    for category in questions:
+    for cat in questions:
         embed=discord.Embed(title="Pytania:", color=0x70ae36)
-        embed.set_author(name=f"Kategoria: {category}", icon_url=guild.icon_url)
+        embed.set_author(name=f"Kategoria: {cat}", icon_url=guild.icon_url)
         embed.set_footer(text="Prosimy o nie udostępnianie pytań innym osobom i przypominamy, że pytania mają na celu jedynie określić poziom kursanta. W Twoim najlepszym interesie jest odpowiadać samodzielnie!")
-        for iteration, question in enumerate(questions[category]):
+        for iteration, question in enumerate(questions[cat]):
             logger.debug(f"Printing {iteration}, {question}")
             embed.add_field(name=f"{iteration + 1}. {question}", value='\u200b', inline=False)
         logger.debug(f"Printing {embed}")
-        await panda_tools.channel_message(guild, embed, channel, embed=True)
+        await panda_tools.channel_message(guild, embed, channel, category, embed=True)
 
 def save_questions(questions, questions_path):
     logger.debug(f"Saving questions")

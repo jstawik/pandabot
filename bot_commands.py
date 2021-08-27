@@ -17,7 +17,7 @@ logger = init_logging(config, __name__)
 #     except Exception as e:
 #         logger.warning (e)
 #         await ctx.send('Wystąpił błąd, prawdopodobnie nie znaleziono takiej osoby')
-#         await panda_tools.channel_message(ctx.guild, e, "pandabot-log")
+#         await panda_tools.channel_message(ctx.guild, e, "pandabot-log", "Techniczne")
 #         return
 
 @bot.command(name="priv")
@@ -31,7 +31,7 @@ async def private_channel(ctx):
     except Exception as e:
         logger.warning (e)
         await ctx.send('Wystąpił błąd, prawdopodobnie nie znaleziono takiej osoby')
-        await panda_tools.channel_message(ctx.guild, e, "pandabot-log")
+        await panda_tools.channel_message(ctx.guild, e, "pandabot-log", "Techniczne")
         return
 
 @bot.command(name="roll")
@@ -41,7 +41,7 @@ async def roll(ctx, dice: str):
         rolls, limit = map(int, dice.split('k'))
     except Exception as e:
         await ctx.send('Format rzutu kością musi być NkN!')
-        await panda_tools.channel_message(ctx.guild, e, "pandabot-log")
+        await panda_tools.channel_message(ctx.guild, e, "pandabot-log", "Techniczne")
         return
 
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))

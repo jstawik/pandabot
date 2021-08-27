@@ -32,14 +32,13 @@ def channel_exists(name, guild, category):
             channel_exists = True 
     return channel_exists
 
-async def channel_message(guild, message, channel_name, embed=False):
-    channel = [channel for channel in guild.channels if channel.name == channel_name][0]
-    logger.debug(f"Printing message: {type(message)}")
-    if embed:
-        logger.debug(f"Printing embed message")
-        await channel.send(embed=message)
-    else:
-        logger.debug(f"Printing message: {message}")
-        await channel.send(message)
-    
-        
+async def channel_message(guild, message, channel_name, category, embed=False):
+    for channel in guild.channels:
+        if str(channel.category) == str(category):
+            if str(channel.name) == str(channel_name):
+                if embed:
+                    logger.debug(f"Printing embed message")
+                    await channel.send(embed=message)
+                else:
+                    logger.debug(f"Printing message: {message}")
+                    await channel.send(message)
