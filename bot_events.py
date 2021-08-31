@@ -20,7 +20,7 @@ async def on_member_update(before, after):
             await panda_roles.on_role_update(before, after)
         except Exception as e:
             logger.warning(e)
-            await panda_tools.channel_message(after.guild, e, "pandabot-log")
+            await panda_tools.channel_message(after.guild, e, "pandabot-log", "Techniczne")
 
 @bot.event
 async def on_member_join(member):
@@ -30,10 +30,10 @@ async def on_member_join(member):
         embed=discord.Embed(title=member.name, description=" ", color=0x808000)
         embed.add_field(name="NOWA PANDA !", value=f"Data: {now} ", inline=False)
         logger.debug(f"Printing {embed}")
-        await panda_tools.channel_message(member.guild, embed, config["user_info_category_name"], embed=True)
+        await panda_tools.channel_message(member.guild, embed, config["user_info_category_name"], "Zarząd", embed=True)
     except Exception as e:
         logger.warning(e)
-        await panda_tools.channel_message(member.guild, e, "pandabot-log")
+        await panda_tools.channel_message(member.guild, e, "pandabot-log", "Techniczne")
 
 @bot.event
 async def on_member_remove(member):
@@ -43,7 +43,7 @@ async def on_member_remove(member):
         embed=discord.Embed(title=member.name, description=" ", color=0x8d8d8d)
         embed.add_field(name="SAD PANDA ! Odszedł nam użytkownik", value=f"Data: {now} ", inline=False)
         logger.debug(f"Printing {embed}")
-        await panda_tools.channel_message(member.guild, embed, config["user_info_category_name"], embed=True)
+        await panda_tools.channel_message(member.guild, embed, config["user_info_category_name"], "Zarząd", embed=True)
     except Exception as e:
         logger.warning(e)
-        await panda_tools.channel_message(member.guild, e, "pandabot-log")
+        await panda_tools.channel_message(member.guild, e, "pandabot-log", "Techniczne")
