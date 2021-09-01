@@ -1,6 +1,8 @@
 from datetime import timedelta, datetime
 import json
 
+# Expected structure of the json file: list[list3[str, int, str]]
+
 followups = {
     "still_there": timedelta(hours=4)
     , "last_warning": timedelta(hours=16)
@@ -15,16 +17,27 @@ def gen_reminders(channel_name):
 
 def add_reminders(reminders):
     try:
-        with open(schedule_file, "r") as s:
-            schedule = json.load(s)
+        with open(schedule_file, "r") as r:
+            schedule = json.load(r)
     except FileNotFoundError:
         schedule = []
-    with open(schedule_file, "w") as s:
-        json.dump(schedule + [reminders], s)
+    with open(schedule_file, "w") as w:
+        json.dump(schedule + reminders, w)
 
 def get_reminders():
-    pass
+    try:
+        with open(schedule_file, "r") as r:
+            schedule = json.load(r)
+            past, now, future = [], int(datetime.now().timestamp()), []
+            [past.append(reminder) if reminder[1] < now else future.append(reminder) for reminder in schedule ]
+        with open(schedule_file, "w") as w:
+            json.dump(future, w)
+        return past
+    except FileNotFoundError:
+        return []
+
 
 if __name__ == "__main__":
     print(gen_reminders("test"))
-    add_reminders(gen_reminders("test2"))
+    add_reminders(gen_reminders(f"test2_{datetime.now().timestamp()}"))
+    print(get_reminders())
