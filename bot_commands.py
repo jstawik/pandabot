@@ -52,6 +52,6 @@ async def roll(ctx, dice: str):
 # async def question(ctx):
 #     """Nie używać"""
 #     try:
-#         await panda_roles.generate_questions(ctx.guild, "kandydat-devops-core_kasper3649")
+#         await panda_roles.generate_questions(ctx.guild, "michald", "Kandydat-devops-core")
 #     except Exception as e:
 #         await ctx.send(e)

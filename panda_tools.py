@@ -9,8 +9,15 @@ async def create_text_channel(guild, user, name, category):
     category = [cat for cat in guild.categories if cat.name == category][0]
     logger.debug(f"Creating channel named {name} inside category {category}")
     tmp_channel = await guild.create_text_channel(name=name, category=category)
-    logger.debug(f"Setting permissions for user {user}")
-    await tmp_channel.set_permissions(user, read_messages=True, send_messages=True)
+    try:
+        logger.debug(f"Setting permissions for user {user} channel {tmp_channel}")
+        await tmp_channel.set_permissions(user, read_messages=True, send_messages=True, read_message_history=True)
+        
+    except Exception as e:
+        logger.warning (e)
+        logger.warning(f"Nie udało się ustawić dostępów do kanału dla użytkownika {user}")
+        return
+    
 
     logger.info(f"Channel {tmp_channel.name}"
           f" created in {tmp_channel.category}"
