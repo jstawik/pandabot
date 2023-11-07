@@ -1,5 +1,6 @@
 import logging
 from panda_init import *
+import asyncio
 
 logger = init_logging(config, __name__) 
 
@@ -10,8 +11,9 @@ async def create_text_channel(guild, user, name, category):
     logger.debug(f"Creating channel named {name} inside category {category}")
     tmp_channel = await guild.create_text_channel(name=name, category=category)
     try:
+        await asyncio.sleep(2) 
         logger.debug(f"Setting permissions for user {user} channel {tmp_channel}")
-        await tmp_channel.set_permissions(user, read_messages=True, send_messages=True, read_message_history=True)
+        await tmp_channel.set_permissions(user, read_messages=True, send_messages=True, read_message_history=True, add_reactions=True, attach_files=True, external_emojis=True) #external_stickers=True)
         
     except Exception as e:
         logger.warning (e)
