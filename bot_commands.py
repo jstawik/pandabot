@@ -47,11 +47,11 @@ async def roll(ctx, dice: str):
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
     await ctx.send(result)
 
-# TODO: Enable again for owner only.
-# @bot.command(name="question")
-# async def question(ctx):
-#     """Nie używać"""
-#     try:
-#         await panda_roles.generate_questions(ctx.guild, "kandydat-devops-core_kasper3649")
-#     except Exception as e:
-#         await ctx.send(e)
+#TODO: Enable again for owner only.
+@bot.command(name="question")
+async def question(ctx):
+    """Nie używać"""
+    try:
+        await panda_roles.generate_questions(ctx.guild, "dwdanielo")
+    except Exception as e:
+        await ctx.send(e)

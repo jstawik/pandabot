@@ -42,4 +42,3 @@ async def channel_message(guild, message, channel_name, embed=False):
         logger.debug(f"Printing message: {message}")
         await channel.send(message)
     
-        
